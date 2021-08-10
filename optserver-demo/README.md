@@ -1,6 +1,6 @@
 # OptServer demo
 
-The [OptServer](https://docs.mosek.com/9.2/opt-server/index.html) is a tool for submitting and executing MOSEK optimizations remotely. This Docker image sets up the simplest stand-alone OptServer container with latest MOSEK version and with all dependencies installed internally. 
+The [OptServer](https://docs.mosek.com/latest/opt-server/index.html) is a tool for submitting and executing MOSEK optimizations remotely. This Docker image sets up the simplest stand-alone OptServer container with latest MOSEK version and with all dependencies installed internally. 
 
 ## Building and running
 
@@ -43,7 +43,7 @@ in a Web browser. Log in with user ``admin``, password ``admin``.
 
 ## Other
 
-* If you attach in interactive model you can start/stop the OptServer using the scripts provided and adjust configuration.
+* If you attach in interactive mode you can start/stop the OptServer using the scripts provided and adjust configuration.
 * Documentation is at https://docs.mosek.com/latest/opt-server/index.html
 * If you don't provide a license file, comment out the ``COPY`` command in the dockerfile and you can still try the web interface, but without being able to actually optimize anything.
 * Contact ``support@mosek.com`` in case of questions.
