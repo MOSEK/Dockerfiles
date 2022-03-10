@@ -1,11 +1,11 @@
 # Simple demo installation of MOSEK OptServer.
-FROM ubuntu
+FROM ubuntu:18.04
 
 LABEL name="MOSEK OptServer Demo" maintainer="support@mosek.com"
 
 # Set up the system
 RUN apt-get update \
-    && apt-get install -y postgresql curl \
+    && apt-get install -y postgresql curl zip \
     && useradd -m optserver \
     && usermod -a -G postgres optserver
 
