@@ -23,7 +23,8 @@ ENV PG=/usr/lib/postgresql/14/bin/ \
     MOSEKOPT=/home/optserver/mosek/latest/opt-server \
     MOSEKOPTBIN=/home/optserver/mosek/latest/opt-server/bin \
     MOSEKKEYS=/home/optserver/mosek/latest/opt-server/etc/Mosek/ssl \
-    MOSEKCONF=/home/optserver/mosek/latest/opt-server/etc/Mosek/server.conf
+    MOSEKCONF=/home/optserver/mosek/latest/opt-server/etc/Mosek/server.conf \
+    ADMINPASSWD=admin    
 
 # Download and unpack latest MOSEK
 RUN curl https://download.mosek.com/stable/latest/mosektoolslinux64x86.tar.bz2 --output mosektoolslinux64x86.tar.bz2; \
@@ -44,10 +45,10 @@ RUN curl https://download.mosek.com/stable/latest/mosektoolslinux64x86.tar.bz2 -
     $PG/initdb; \
     $PG/pg_ctl start; \
     $PG/createdb optserver; \
-    echo admin | $MOSEKOPTBIN/MosekServer.bin --config $MOSEKCONF --create-database --reset-admin --no-startup; \
+    echo $ADMINPASSWD | $MOSEKOPTBIN/MosekServer --create-database --reset-admin --no-startup; \
     $PG/pg_ctl stop; \
     # Create some OptServer startup/stop scripts
-    echo "#!/bin/bash\n$MOSEKOPTBIN/MosekServer.bin --config $MOSEKCONF --logfile - -unsafe -disable-tls" > start-server; \
+    echo "#!/bin/bash\n$MOSEKOPTBIN/MosekServer --logfile - -unsafe -disable-tls" > start-server; \
     echo "#!/bin/bash\ncat $MOSEKOPT/var/Mosek/server.pid | xargs kill" > stop-server; \
     echo "#!/bin/bash\n./stop-server && ./start-server" > restart-server; \
     echo "#!/bin/bash\n$PG/pg_ctl start && ./start-server" > start-all; \
