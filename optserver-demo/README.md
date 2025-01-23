@@ -8,6 +8,8 @@ Prepare a folder containing this Dockerfile and a MOSEK license file:
 
 ```
 Dockerfile
+optserver.conf
+start.sh
 mosek.lic
 ```
 
