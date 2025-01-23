@@ -31,9 +31,15 @@ To optimize remotely provide that address in your MOSEK code following instructi
 * Optimizer API: call ``putoptserverhost`` see [C](https://docs.mosek.com/latest/capi/tutorial-remote-optimization.html), [Python](https://docs.mosek.com/latest/pythonapi/tutorial-remote-optimization.html), [C#](https://docs.mosek.com/latest/dotnetapi/tutorial-remote-optimization.html), [Java](https://docs.mosek.com/latest/javaapi/tutorial-remote-optimization.html)
 * Fusion API: call ``M.optserverHost``, see [C++](https://docs.mosek.com/latest/cxxfusion/tutorial-remote-optimization.html), [Python](https://docs.mosek.com/latest/pythonfusion/tutorial-remote-optimization.html), [C#](https://docs.mosek.com/latest/dotnetfusion/tutorial-remote-optimization.html), [Java](https://docs.mosek.com/latest/javafusion/tutorial-remote-optimization.html)
 * Command line: ``mosek -optserv http://your.machine.name:30080 filename``
-* Optimization Toolbox for MATLAB: [see here](https://docs.mosek.com/latest/toolbox/tutorial-remote-optimization.html)
+* MATLAB: [see here](https://docs.mosek.com/latest/toolbox/tutorial-remote-optimization.html) or [see here](https://docs.mosek.com/latest/matlabapi/tutorial-remote-optimization.html)
+
+It is assumed that you are using the same MOSEK version in the client as on the OptServer, which, if using this ``Dockerfile``, is the last stable version (the first two numbers ``major.minor`` matter). Otherwise modify the file to install MOSEK versions other than ``latest``.
 
 ## Web interface
+
+To see if the server works open
+
+```http://your.machine.name:30080/api/v1/version```
 
 To try the web interface open 
 
